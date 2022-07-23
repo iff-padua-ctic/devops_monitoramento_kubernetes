@@ -6,17 +6,17 @@ https://docs.technotim.live/posts/kube-grafana-prometheus/ <br>
 
 
 
-1 - Adicionando o repositório do Prometheus no helm
+1 - Adicionando o repositório do Prometheus no helm <br>
     $ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts <br>
 
 1.1 Criar o namespace no kubernetes <br>
     $ kubectl create namespace monitoring <br>
 
-1.2 Definir o usuário e senha
+1.2 Definir o usuário e senha <br>
     $ echo -n 'seu_usuario' > ./admin-user # mude o usuário <br>
     $ echo -n 'sua_senha' > ./admin-password # mude a senha <br>
 
-1.3 Criando o secret
+1.3 Criando o secret <br>
     $ kubectl create secret generic grafana-admin-credentials --from-file=./admin-user --from-file=admin-password -n monitoring <br>
 
     $ kubectl describe secret -n monitoring grafana-admin-credentials <br>
@@ -29,7 +29,7 @@ https://docs.technotim.live/posts/kube-grafana-prometheus/ <br>
     $ rm admin-user && rm admin-password
 
 
-2 - Instalação do Prometheus e Graphana
+2 - Instalação do Prometheus e Graphana <br>
     <a href="https://github.com/techno-tim/launchpad/tree/master/kubernetes/kube-prometheus-stack">Download do values do Prometheus</a> <br>
 
     #Execute para Instalação
@@ -39,11 +39,11 @@ https://docs.technotim.live/posts/kube-grafana-prometheus/ <br>
     $ helm upgrade -n monitoring prometheus prometheus-community/kube-prometheus-stack -f values.yaml <br>
 
 
-3 - Acesso
-    http://<IP_CLUSTER>:52222    
+3 - Acesso <br>
+    http://<IP_CLUSTER>:52222     <br>
 
 
-4 - Exemplos
+4 - Exemplos <br>
     https://github.com/techno-tim/launchpad/tree/master/kubernetes/kube-prometheus-stack <br>
 
     https://github.com/techno-tim/launchpad <br>
