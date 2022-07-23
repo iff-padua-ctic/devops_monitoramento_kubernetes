@@ -1,5 +1,4 @@
-# devops_monitoramento_kubernetes
-Dashboards com Grafana e Prometheus
+# Dashboards com Grafana e Prometheus
 
 https://www.youtube.com/watch?v=fzny5uUaAeY&t=5s <br>
 https://docs.technotim.live/posts/kube-grafana-prometheus/ <br>
