@@ -41,7 +41,7 @@ grafana:
   forceDeployDatasources: false
   forceDeployDashboards: false
   defaultDashboardsEnabled: true
-  defaultDashboardsTimezone: utc
+  defaultDashboardsTimezone: utc-3
   serviceMonitor:
     enabled: true
   admin:
@@ -64,9 +64,12 @@ kubelet:
 kubeControllerManager:
   enabled: true
   endpoints: # ips of servers 
-    - 192.168.30.38
-    - 192.168.30.39
-    - 192.168.30.40
+    - 10.140.1.14 #pádua
+    - 10.140.1.15 #pádua
+    - 10.140.1.17 #pádua
+    - 10.160.1.14 #cordeiro
+    - 10.160.1.15 #cordeiro
+    - 10.160.1.16 #cordeiro
 
 coreDns:
   enabled: true
@@ -77,9 +80,13 @@ kubeDns:
 kubeEtcd:
   enabled: true
   endpoints: # ips of servers
-    - 192.168.30.38
-    - 192.168.30.39
-    - 192.168.30.40
+    - 10.140.1.14 #pádua
+    - 10.140.1.15 #pádua
+    - 10.140.1.17 #pádua
+    - 10.160.1.14 #cordeiro
+    - 10.160.1.15 #cordeiro
+    - 10.160.1.16 #cordeiro
+
   service:
     enabled: true
     port: 2381
@@ -88,17 +95,23 @@ kubeEtcd:
 kubeScheduler:
   enabled: true
   endpoints: # ips of servers
-    - 192.168.30.38
-    - 192.168.30.39
-    - 192.168.30.40
+    - 10.140.1.14 #pádua
+    - 10.140.1.15 #pádua
+    - 10.140.1.17 #pádua
+    - 10.160.1.14 #cordeiro
+    - 10.160.1.15 #cordeiro
+    - 10.160.1.16 #cordeiro
 
 kubeProxy:
   enabled: true
   endpoints: # ips of servers
-    - 192.168.30.38
-    - 192.168.30.39
-    - 192.168.30.40
-
+    - 10.140.1.14 #pádua
+    - 10.140.1.15 #pádua
+    - 10.140.1.17 #pádua
+    - 10.160.1.14 #cordeiro
+    - 10.160.1.15 #cordeiro
+    - 10.160.1.16 #cordeiro
+    
 kubeStateMetrics:
   enabled: true
 
