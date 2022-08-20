@@ -1,2 +1,1 @@
-# devops_jupyter
-Imagem de container do Jupyter NoteBook
+# Monitoramento com Grafana e Prometheus
