@@ -1,0 +1,31 @@
+
+$ helm repo add grafana https://grafana.github.io/helm-charts
+$ helm repo update
+$ helm install -n monitoring grafana grafana/grafana -f values.yaml
+
+$ helm list -n monitoring
+$ kubectl get pods -n monitoring -o wide
+
+
+#desinstalar
+$ helm uninstall grafana -n monitoring
+
+
+================ Configuração ==========================
+acesso: http://10.140.1.14:30002
+
+
+Adicionar datasource Prometheus
+http url: http://prometheus-server
+
+
+============== DashBoard ============================
+https://devopspro.alpaclass.com/c/cursos/tZNrpg?lessonSlug=6e5627
+
+
+
+
+
+
+
+

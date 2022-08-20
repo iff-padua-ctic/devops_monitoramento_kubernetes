@@ -1,0 +1,23 @@
+apiVersion: traefik.containo.us/v1alpha1
+
+kind: IngressRoute
+
+metadata:
+  name: ingress-metrics
+
+spec:
+  #EndPoint
+  entryPoints:
+    - web
+  
+  routes:
+  - match: Host(`metrics.padua.iff.edu.br`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: service-metrics
+      port: 8000  
+
+
+      
+
+#https://doc.traefik.io/traefik/v2.1/routing/providers/kubernetes-crd/#server-load-balancing

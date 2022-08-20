@@ -1,0 +1,81 @@
+Prometheus e Graphana:
+https://youtu.be/P-nqsFkRMiU?t=563
+
+
+métrica não é log
+
+métricas: dados numéricos;
+gráficos;
+agregações;
+performance.
+
+Logs:
+dados textuais;
+mnsagens de erros;
+informação;
+buscáveis
+
+Arquitetura:
+https://youtu.be/P-nqsFkRMiU?t=913
+
+
+o prometheus atua de forma ativa e a aplicação atua de forma passiva:
+o prometheu é que coleta as métricas da aplicação via endpont exposto pela aplicação
+
+padrão de métrica: go, java, python, ruby, c++, node
+
+https://linuxhint.com/monitor-python-applications-prometheus/
+
+Bibliotecas:
+opentelemetry
+appMetrics
+micrometer
+
+
+Exportes: para aplicações que não fornecem suporte nativo
+
+PushGateway: cache das métricas da aplicação
+
+
+consultas as métricas:
+https://youtu.be/P-nqsFkRMiU?t=1530
+
+
+Alertas:
+https://youtu.be/P-nqsFkRMiU?t=1619
+
+alertmanager
+
+==========================================================
+Instalação:
+https://youtu.be/P-nqsFkRMiU?t=1846
+
+https://prometheus.io/
+https://prometheus.io/docs/prometheus/latest/getting_started/
+https://helm.sh/
+https://helm.sh/docs/intro/install/
+
+https://artifacthub.io/
+https://artifacthub.io/packages/helm/prometheus-community/prometheus
+
+$ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+$ helm repo update
+$ helm install [RELEASE_NAME] prometheus-community/prometheus
+
+# desinstalar
+$ helm uninstall [RELEASE_NAME]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: app-metrics
+  
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: app-metrics
+      
+  template:
+    metadata:
+      annotations: #prometheus
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8000"
+
+      labels:
+        app: app-metrics
+    spec:
+      containers:
+      - name: metrics
+        image: iffpadua/metrics:1.1
+        resources:
+          limits:
+            memory: "32Mi" 
+            cpu: "32m"
+        ports:
+        - containerPort: 8000
+        - containerPort: 8001
+        
+                
+        imagePullPolicy: Always
+        
+
+
+          
+      #https://kubedev.club.hotmart.com/lesson/2OM63PnY46/node-selector
+      nodeSelector:
+        campus: Padua

@@ -1,0 +1,49 @@
+#https://devopspro.alpaclass.com/c/cursos/tZNrpg?lessonSlug=8xKF34
+
+#forçar requisições pra gerar métricas
+ while true; do curl -i http://metrics.padua.iff.edu.br; sleep 1; done;
+
+
+#Tipos:
+
+couter
+gauge
+
+
+################# instant vector (instantâneo de um momento no tempo) ###########################
+
+#filtrar o código http 200
+prometheus_http_requests_total{code="200"}
+
+process_resident_memory_bytes{node="sv-160-kb04"}
+
+#diferença
+process_resident_memory_bytes{node!="sv-160-kb04"}
+
+#expressões regulares
+process_resident_memory_bytes{node=~"sv-160-kb04|sv-160-kb02"}
+
+#negação (expressão regular)
+process_resident_memory_bytes{node!~"sv-160-kb04|sv-160-kb02"}
+
+
+################# range vector (intervalo de tempo) ###########################
+
+process_resident_memory_bytes[1m]
+
+prometheus_http_requests_total[1m]
+
+###################### funções ################################################
+#https://prometheus.io/docs/prometheus/latest/querying/functions/
+
+rate(promhttp_metric_handler_requests_total[5m]
+
+sum(rate(promhttp_metric_handler_requests_total[25m]))
+
+#agrupamento
+sum(rate(promhttp_metric_handler_requests_total[25m])) by(node)
+
+avg(rate(system_usage{resource_type="cpu_usage_percent"}[1m]))
+
+avg(rate(system_usage{resource_type="cpu_usage_percent"}[1m])) by(pod)
+

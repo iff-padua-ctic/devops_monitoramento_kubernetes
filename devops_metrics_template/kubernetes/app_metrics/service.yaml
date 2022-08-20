@@ -1,0 +1,29 @@
+
+#Tutorial: https://flores.eken.nl/running-unifi-controller-on-k8s/
+#Tutorial II: https://blog.adamhancock.co.uk/deploying-unifi-on-kubernetes/
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+  name: service-metrics
+  
+spec:
+  selector:
+    app: app-metrics
+    
+  ports:
+  - name: "metrics"
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+
+  
+  - name: "presentation"
+    port: 8001
+    protocol: TCP
+    targetPort: 8001
+    
+  type: ClusterIP
+  

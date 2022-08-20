@@ -1,0 +1,93 @@
+
+#################### jupyter Container##################################################
+
+sudo docker volume create ct-jupyter_data
+
+sudo docker run -ti --name ct --hostname ct-jupyter  -p 8888:8888    iff/ubuntu:18.04
+
+
+
+
+
+#https://docs.anaconda.com/anaconda/install/linux/
+#https://www.digitalocean.com/community/tutorials/how-to-install-anaconda-on-ubuntu-18-04-quickstart-pt
+
+apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
+
+cd /usr/src
+
+wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+
+chmod 777 Anaconda3-2020.02-Linux-x86_64.sh
+
+./Anaconda3-2020.02-Linux-x86_64.sh
+
+PATTH = >  /home/anaconda/
+
+
+source ~/.bashrc
+
+conda list
+
+conda upgrade conda
+
+conda update --all
+
+conda create --name py3 python=3
+
+conda activate py3
+
+conda install -c conda-forge jupyterlab
+
+jupyter notebook --generate-config
+
+cd  /root/.jupyter
+
+vim jupyter_notebook_config.py
+
+# localize as chaves abaixo e deixe os valores em branco:
+c.NotebookApp.token = ''
+c.NotebookApp.password = ''
+
+
+
+conda install pandas
+
+conda install matplotlib
+
+conda install psycopg2
+
+
+
+
+
+
+
+mkdir -p  /home/anaconda/envs/py3/work_dir
+chmod -R 777  /home/anaconda/envs/py3/work_dir
+
+
+vim /home/init.sh
+#!/bin/bash
+source ~/.bashrc
+source /home/anaconda/etc/profile.d/conda.sh
+conda activate py3
+jupyter notebook   --allow-root   --ip=0.0.0.0  --port=8888  --notebook-dir='/home/anaconda/envs/py3/work_dir' &
+
+
+
+chmod 777 init.sh
+
+
+http://10.140.1.1:8888
+
+
+
+remover ambiente:  conda remove py3
+
+
+
+sudo docker commit --change='ENTRYPOINT ["/bin/bash","-c","/home/init.sh && /bin/bash"]' ct  iff/jupyter:1.0
+
+sudo docker run -ti --name ct-jupyter --hostname ct-jupyter  --restart unless-stopped  -p 8888:8888   -v ct-jupyter_data:/home/anaconda/envs/py3/work_dir     iff/jupyter:1.0                                                                                                    
+#################### fim jupyter #############################################

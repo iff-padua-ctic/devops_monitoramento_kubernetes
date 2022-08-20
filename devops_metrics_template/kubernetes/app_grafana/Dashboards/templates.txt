@@ -1,0 +1,10 @@
+tags grafana
+
+315
+
+15760
+
+
+https://grafana.com/grafana/dashboards/15760-kubernetes-views-pods/
+
+https://www.google.com/search?q=download+grafana+dashboars+kubernetes&rlz=1C1GCEB_enBR976BR976&oq=download+grafana+dashboars+kubernetes&aqs=chrome..69i57j33i10i160j33i22i29i30l8.334j0j7&sourceid=chrome&ie=UTF-8

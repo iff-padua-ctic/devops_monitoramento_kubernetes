@@ -1,0 +1,70 @@
+Instalação:
+https://youtu.be/P-nqsFkRMiU?t=1846
+
+https://devopspro.alpaclass.com/c/cursos/tZNrpg?lessonSlug=S1ejV9
+https://artifacthub.io/packages/helm/prometheus-community/prometheus
+
+https://artifacthub.io/
+https://artifacthub.io/packages/helm/prometheus-community/prometheus
+
+
+#https://youtu.be/P-nqsFkRMiU?t=2164
+
+$ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+$ helm repo update
+
+#pegar os values do chart
+$ helm show values prometheus-community/prometheus > values.yaml
+
+
+#instalação por aquivo values
+$ helm upgrade --install -n monitoring prometheus prometheus-community/prometheus -f values.yaml 
+
+#instalação por parametros
+$ helm upgrade --install -n monitoring prometheus prometheus-community/prometheus --set alertmanager.enabled=false,server.persistentVolume.enabled=false,server.service.type=NodePort,server.global.scrape_interval=10s,pushgateway.enabled=false 
+
+# desinstalar
+$ helm uninstall prometheus -n monitoring
+
+
+#https://youtu.be/P-nqsFkRMiU?t=2780
+
+
+============================== Annotation de Coleta de Métricas ================================================
+
+https://devopspro.alpaclass.com/c/cursos/tZNrpg?lessonSlug=S1ejV9
+Para monitorar um POD deve-se utilizar annotation no manifesto de deployment
+Exemplo:
+
+#https://artifacthub.io/packages/helm/prometheus-community/prometheus
+
+template:
+  metadata:
+    annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8080"
+
+
+======================================== Exporter ==============================================================
+#https://devopspro.alpaclass.com/c/aulas/S1ejV9
+#Configuração de Exporter a partir de 00:19:30 do video acima (utilizando o padrão side-car) sem a 
+necessidade de modificar a imagem original      
+
+    spec:
+      containers:
+      - name: metrics #side-car
+        image: iffpadua/metrics:1.0
+        resources:
+        limits:
+            memory: "128Mi" 
+            cpu: "128m"
+        ports:
+        - containerPort: xxx
+
+        env:
+         - name: DATA_BASE_URI
+           value: 'localhost:5432' #no padrão side-car os dois container estão no mesmo POD e por isso utiliza-se "localhost" 
+        
+
+

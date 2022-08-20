@@ -1,0 +1,26 @@
+apiVersion: traefik.containo.us/v1alpha1
+
+kind: IngressRoute
+
+metadata:
+  name: ingress-grafana-padua
+  
+
+spec:
+  #EndPoint
+  entryPoints:
+    - websecure
+  
+  routes:
+  - match: Host(`grafana.padua.iff.edu.br`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: grafana
+      port: 80
+
+  tls:
+    secretName: cer-grafana-padua
+
+      
+
+#https://doc.traefik.io/traefik/v2.1/routing/providers/kubernetes-crd/#server-load-balancing

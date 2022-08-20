@@ -1,0 +1,25 @@
+version: '3.9'
+
+#volumes:
+#  metrics_data:
+ 
+#networks:
+#  metrics_net:    
+    
+services:
+  jupyter_notebook:
+    image: nome_imagem
+    container_name: metrics
+    restart: unless-stopped
+    
+#    volumes:
+#      - metrics_data:/home/work_dir
+   
+    ports:
+      - 80:80
+
+    networks:
+      - metrics_net  
+
+   
+      
