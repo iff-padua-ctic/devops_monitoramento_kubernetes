@@ -1,0 +1,19 @@
+#Execute primeira a instalação do Prometheus
+
+#Criando o persistent-volume
+kubectl apply -f .\persistent-volume.yaml -n monitoring
+
+
+#Criando o persistent-volume-claim
+kubectl apply -f .\persistent-volume-claim.yaml -n monitoring
+
+#verificando
+kubectl get pvc -n monitoring
+
+#Instalando o Grafana
+helm upgrade --install -n monitoring grafana grafana/grafana -f values-producao.yaml
+
+
+
+
+

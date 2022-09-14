@@ -1,0 +1,22 @@
+#https://faun.pub/integrating-prometheus-and-grafana-on-kubernetes-and-making-their-data-persistent-96f834979f5f
+
+
+#preparação do nó (worker node) onde residirá o volume:
+#Worker Node(sv-160-kb04 - IP: 10.160.1.20)
+$ cd /mnt
+$ sudo mkdir data
+$ sudo chown 1000:1000 -R data/
+$  sudo chown -R 65534:65534 data
+
+---------------------------------------------------------------------------------------------
+
+#criar o persistent volume
+$ kubectl apply  -f .\persistent-volume.yaml  -n monitoring
+
+# Criar o persistent-volume-claim
+$ kubectl apply  -f .\persistent-volume-claim.yaml  -n monitoring
+
+# instalar o Prometheus
+$ helm upgrade --install -n monitoring prometheus prometheus-community/prometheus -f .\values-producao.yaml
+
+
