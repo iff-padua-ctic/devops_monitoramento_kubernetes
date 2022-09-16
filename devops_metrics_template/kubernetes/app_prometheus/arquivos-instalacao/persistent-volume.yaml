@@ -10,14 +10,19 @@ metadata:
 spec:
   storageClassName: prometheus-storage-class
   capacity:
-    storage: 2Gi
+    storage: 5Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  
+
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: "/mnt/nfs_share/prometheus"
+    server: 10.160.1.18
+
   #salvo na máquina local
-  hostPath:
-    path: "/mnt/data/prometheus"
+  #hostPath:
+  #  path: "/mnt/data/prometheus"
 
 
   nodeAffinity:

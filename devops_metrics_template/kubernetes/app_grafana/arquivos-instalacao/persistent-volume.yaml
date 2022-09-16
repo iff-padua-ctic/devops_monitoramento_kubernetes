@@ -14,8 +14,17 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data/grafana"
+  
+  persistentVolumeReclaimPolicy: Retain
+  
+  nfs:
+    path: "/mnt/nfs_share/grafana"
+    server: 10.160.1.18
+  
+  #hostPath:
+  #  path: "/mnt/data/grafana"
+
+
 
   nodeAffinity:
     required:
